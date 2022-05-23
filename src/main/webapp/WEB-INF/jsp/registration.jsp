@@ -11,6 +11,7 @@
 
 <body>
 <div>
+  <%--@elvariable id="userForm" type="com.laptev.entity.User"--%>
   <form:form method="POST" modelAttribute="userForm">
     <h2>Регистрация</h2>
     <div>
@@ -18,6 +19,20 @@
                   autofocus="true"></form:input>
       <form:errors path="username"></form:errors>
         ${usernameError}
+    </div>
+    <div>
+      <form:input type="email" path="email" placeholder="Email"></form:input>
+      <form:errors path="email"></form:errors>
+        ${emailError}
+    </div>
+    <div>
+      <form:input type="text" path="name" placeholder="Name"></form:input>
+    </div>
+    <div>
+      <form:input type="text" path="surname" placeholder="Surname"></form:input>
+    </div>
+    <div>
+      <form:input type="phoneNumber" path="phoneNumber" placeholder="Phone number"></form:input>
     </div>
     <div>
       <form:input type="password" path="password" placeholder="Password"></form:input>

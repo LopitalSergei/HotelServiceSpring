@@ -14,15 +14,21 @@
   <table>
     <thead>
     <th>ID</th>
-    <th>UserName</th>
-    <th>Password</th>
+    <th>Username</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>email</th>
+    <th>Phone number</th>
     <th>Roles</th>
     </thead>
     <c:forEach items="${allUsers}" var="user">
       <tr>
         <td>${user.id}</td>
         <td>${user.username}</td>
-        <td>${user.password}</td>
+        <td>${user.name}</td>
+        <td>${user.surname}</td>
+        <td>${user.email}</td>
+        <td>${user.phoneNumber}</td>
         <td>
           <c:forEach items="${user.roles}" var="role">${role.name}; </c:forEach>
         </td>
