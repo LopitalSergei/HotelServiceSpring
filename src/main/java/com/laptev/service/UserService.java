@@ -1,10 +1,12 @@
 package com.laptev.service;
 
+import com.laptev.entity.ConfirmationToken;
 import com.laptev.entity.Role;
 import com.laptev.entity.User;
 import com.laptev.repository.RoleRepository;
 import com.laptev.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,22 +20,27 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class UserService implements UserDetailsService {
     @PersistenceContext
     private EntityManager em;
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    RoleRepository roleRepository;
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private UserRepository userRepository;
+
+    private RoleRepository roleRepository;
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private ConfirmationTokenService confirmationTokenService;
+
+    private EmailSenderService emailSenderService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
 
         if (user == null) {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("Пользователь не найден!");
         }
 
         return user;
@@ -58,19 +65,43 @@ public class UserService implements UserDetailsService {
         user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+
+        final ConfirmationToken confirmationToken = new ConfirmationToken(user);
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
+
         return true;
     }
 
-    public boolean deleteUser(Long userId) {
+    public void confirmUser(ConfirmationToken confirmationToken) {
+        final User user = confirmationToken.getUser();
+
+        user.setEnabled(true);
+
+        userRepository.save(user);
+
+        confirmationTokenService.deleteConfirmationToken(confirmationToken.getId());
+    }
+
+    public void sendConfirmationMail(String userMail, String token) {
+        final SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(userMail);
+        mailMessage.setSubject("Подтверждение регистрации!");
+        mailMessage.setFrom("<MAIL>");
+        mailMessage.setText(
+                "Спасибо за регистрацию. Пожалуйста перейдите по ссылке, для активации аккаунта. " + "http://localhost:8080/confirm?token="
+                        + token);
+
+        emailSenderService.sendEmail(mailMessage);
+    }
+
+    public void deleteUser(Long userId) {
         if (userRepository.findById(userId).isPresent()) {
             userRepository.deleteById(userId);
-            return true;
         }
-        return false;
     }
 
     public List<User> usergtList(Long idMin) {
-        return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)
+        return em.createQuery("SELECT u FROM users u WHERE u.id > :paramId", User.class)
                 .setParameter("paramId", idMin).getResultList();
     }
 }
