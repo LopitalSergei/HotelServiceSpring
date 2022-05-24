@@ -25,7 +25,7 @@ public class ConfirmationTokenService {
         return confirmationTokenRepository.findConfirmationTokenByConfirmationToken(token);
     }
 
-    public ConfirmationToken findConfirmationTokenByUserId(Long userId){
+    public ConfirmationToken findConfirmationTokenByUserId(Long userId) {
         return confirmationTokenRepository.findConfirmationTokenByUserId(userId);
     }
 }

@@ -23,17 +23,17 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
     @PersistenceContext
-    private EntityManager em;
+    private final EntityManager em;
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private ConfirmationTokenService confirmationTokenService;
+    private final ConfirmationTokenService confirmationTokenService;
 
-    private EmailSenderService emailSenderService;
+    private final EmailSenderService emailSenderService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -33,6 +33,8 @@
     </div>
     <div>
       <form:input type="phoneNumber" path="phoneNumber" placeholder="Phone number"></form:input>
+      <form:errors path="phoneNumber"></form:errors>
+        ${phoneNumberError}
     </div>
     <div>
       <form:input type="password" path="password" placeholder="Password"></form:input>
