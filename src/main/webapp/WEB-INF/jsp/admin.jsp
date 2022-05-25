@@ -38,7 +38,6 @@
             <input type="hidden" name="action" value="delete"/>
             <button type="submit">Delete</button>
           </form>
-
         </td>
 
       </tr>

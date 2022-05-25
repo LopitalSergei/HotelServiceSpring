@@ -19,22 +19,14 @@
         <th>Duration hours</th>
         <th>User id</th>
         </thead>
-        <c:forEach items="${allRequests}" var="request">
             <tr>
                 <td>${request.id}</td>
                 <td>${request.places}</td>
                 <td>${request.roomClass}</td>
                 <td>${request.durationHours}</td>
                 <td>${request.user.id}</td>
-                <td>
-                    <form action="${pageContext.request.contextPath}/processingRequest" method="post">
-                        <input type="hidden" name="requestId" value="${request.id}"/>
-                        <input type="hidden" name="action" value="processing"/>
-                        <button type="submit">Обработать заявку</button>
-                    </form>
-                </td>
             </tr>
-        </c:forEach>
+
     </table>
     <a href="/">Главная</a>
 </div>

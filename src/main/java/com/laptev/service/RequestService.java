@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -19,15 +20,21 @@ public class RequestService {
 
     private final UserRepository userRepository;
 
-    public void saveRequest(Request request){
+    public void saveRequest(Request request) {
 
         User user = userRepository.findByUsername(getCurrentUsername());
         request.setUser(user);
         requestRepository.save(request);
     }
 
-    public List<Request> allRequests(){
+    public List<Request> allRequests() {
         return requestRepository.findAll();
+    }
+
+    public Request findById(Long id) {
+        if (requestRepository.findById(id).isPresent()) {
+            return requestRepository.findById(id).get();
+        } else return null;
     }
 
     public String getCurrentUsername() {
