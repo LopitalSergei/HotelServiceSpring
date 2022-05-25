@@ -27,9 +27,13 @@
     </div>
     <div>
       <form:input type="text" path="name" placeholder="Name"></form:input>
+      <form:errors path="name"></form:errors>
+        ${nameError}
     </div>
     <div>
       <form:input type="text" path="surname" placeholder="Surname"></form:input>
+      <form:errors path="surname"></form:errors>
+        ${surnameError}
     </div>
     <div>
       <form:input type="phoneNumber" path="phoneNumber" placeholder="Phone number"></form:input>

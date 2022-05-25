@@ -1,5 +1,6 @@
 package com.laptev.controller;
 
+import com.laptev.service.RequestService;
 import com.laptev.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,18 @@ public class AdminController {
 
     private final UserService userService;
 
+    private final RequestService requestService;
+
     @GetMapping("/admin")
     public String userList(Model model) {
         model.addAttribute("allUsers", userService.allUsers());
         return "admin";
+    }
+
+    @GetMapping("/adminRequest")
+    public String requests(Model model){
+        model.addAttribute("allRequests", requestService.allRequests());
+        return "adminRequest";
     }
 
     @PostMapping("/admin")
