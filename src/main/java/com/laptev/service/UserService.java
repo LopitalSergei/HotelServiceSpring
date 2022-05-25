@@ -55,6 +55,8 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
+    // Попробовать сделать роли enum-ами
+
     public boolean saveUser(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
 

@@ -23,9 +23,8 @@ public class Request {
     private Integer durationHours;
 
     @Builder.Default
+    @Enumerated(EnumType.STRING)
     private RequestStatus requestStatus = RequestStatus.IN_PROGRESS;
-
-    // Неправильно настроен мапинг
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")

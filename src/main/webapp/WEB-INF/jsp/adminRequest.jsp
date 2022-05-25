@@ -17,6 +17,7 @@
         <th>Places</th>
         <th>Room class</th>
         <th>Duration hours</th>
+        <th>Request status</th>
         <th>User id</th>
         </thead>
         <c:forEach items="${allRequests}" var="request">
@@ -25,6 +26,7 @@
                 <td>${request.places}</td>
                 <td>${request.roomClass}</td>
                 <td>${request.durationHours}</td>
+                <td>${request.requestStatus}</td>
                 <td>${request.user.id}</td>
                 <td>
                     <form action="${pageContext.request.contextPath}/processingRequest" method="post">

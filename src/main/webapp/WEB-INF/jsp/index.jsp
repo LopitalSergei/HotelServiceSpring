@@ -27,6 +27,9 @@
   <sec:authorize access="hasRole('ADMIN')">
   <h4><a href="/adminRequest">Обработка заявок (только админ)</a></h4>
   </sec:authorize>
+  <sec:authorize access="hasRole('ADMIN')">
+  <h4><a href="/allRooms">Все комнаты (только админ)</a></h4>
+  </sec:authorize>
 </div>
 </body>
 </html>

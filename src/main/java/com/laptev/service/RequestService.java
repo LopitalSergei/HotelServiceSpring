@@ -21,7 +21,6 @@ public class RequestService {
     private final UserRepository userRepository;
 
     public void saveRequest(Request request) {
-
         User user = userRepository.findByUsername(getCurrentUsername());
         request.setUser(user);
         requestRepository.save(request);
