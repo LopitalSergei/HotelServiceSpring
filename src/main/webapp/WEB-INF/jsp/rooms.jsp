@@ -14,7 +14,7 @@
     <table>
         <thead>
         <th>ID</th>
-        <th>Places</th>
+        <th>Number of places</th>
         <th>Room class</th>
         <th>Room status</th>
 
@@ -22,7 +22,7 @@
         <c:forEach items="${allRooms}" var="room">
             <tr>
                 <td>${room.roomNumber}</td>
-                <td>${room.places}</td>
+                <td>${room.numOfPlaces}</td>
                 <td>${room.roomClass}</td>
                 <td>${room.status}</td>
             </tr>

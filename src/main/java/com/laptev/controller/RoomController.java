@@ -30,9 +30,6 @@ public class RoomController {
         return "rooms";
     }
 
-    // Сделать обработку подходящих комнат, достать из БД нужные комнаты и передать в suitableRooms
-
-
     @PostMapping("/roomSelect")
     public String roomSelect(@RequestParam(required = true, defaultValue = "") Long requestId,
                              @RequestParam(required = true, defaultValue = "") String action,
@@ -45,7 +42,7 @@ public class RoomController {
             for (Room room : allRooms) {
                 if (room.getStatus().equals(RoomStatus.EMPTY) &&
                         room.getRoomClass().equals(roomClass) &&
-                        room.getPlaces() >= places) {
+                        room.getNumOfPlaces() >= places) {
 
                     suitableRooms.add(room);
                 }

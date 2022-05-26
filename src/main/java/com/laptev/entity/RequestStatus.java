@@ -1,5 +1,5 @@
 package com.laptev.entity;
 
 public enum RequestStatus {
-    IN_PROGRESS, COMPLETED, PAID
+    IN_PROGRESS, COMPLETED
 }

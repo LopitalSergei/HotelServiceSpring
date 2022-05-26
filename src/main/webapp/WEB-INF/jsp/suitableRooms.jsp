@@ -36,8 +36,8 @@
     <h3>Подходящие комнаты</h3>
     <table>
         <thead>
-        <th>ID</th>
-        <th>Places</th>
+        <th>Room number</th>
+        <th>Number of places</th>
         <th>Room class</th>
         <th>Room status</th>
 
@@ -45,9 +45,20 @@
         <c:forEach items="${suitableRooms}" var="room">
             <tr>
                 <td>${room.roomNumber}</td>
-                <td>${room.places}</td>
+                <td>${room.numOfPlaces}</td>
                 <td>${room.roomClass}</td>
                 <td>${room.status}</td>
+                <td>
+                    <form action="${pageContext.request.contextPath}/creatingOrder" method="post">
+                        <input type="hidden" name="roomNumber" value="${room.roomNumber}"/>
+                        <input type="hidden" name="userId" value="${request.user.id}"/>
+                        <input type="hidden" name="requestId" value="${request.id}"/>
+                        <input type="hidden" name="places" value="${request.places}"/>
+                        <input type="hidden" name="durationHours" value="${request.durationHours}"/>
+                        <input type="hidden" name="action" value="processing"/>
+                        <button type="submit">Забронировать комнату</button>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </table>

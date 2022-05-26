@@ -1,6 +1,7 @@
 package com.laptev.controller;
 
 import com.laptev.entity.Request;
+import com.laptev.entity.RequestStatus;
 import com.laptev.entity.User;
 import com.laptev.service.RequestService;
 import lombok.AllArgsConstructor;
@@ -31,7 +32,7 @@ public class RequestController {
     }
 
     @PostMapping("/request")
-    public String request(@ModelAttribute("requestForm") @Valid Request requestForm, BindingResult bindingResult, Model model){
+    public String request(@ModelAttribute("requestForm") @Valid Request requestForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "request";
         }
@@ -43,7 +44,8 @@ public class RequestController {
     @PostMapping("/processingRequest")
     public String processing(@RequestParam(required = true, defaultValue = "") Long requestId,
                              @RequestParam(required = true, defaultValue = "") String action,
-                             Model model){
+                             Model model) {
+
         if (action.equals("processing")) {
             model.addAttribute("request", requestService.findById(requestId));
         }

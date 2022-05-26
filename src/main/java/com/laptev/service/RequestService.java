@@ -1,6 +1,7 @@
 package com.laptev.service;
 
 import com.laptev.entity.Request;
+import com.laptev.entity.RequestStatus;
 import com.laptev.entity.User;
 import com.laptev.repository.RequestRepository;
 import com.laptev.repository.UserRepository;
@@ -39,5 +40,14 @@ public class RequestService {
     public String getCurrentUsername() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return auth.getName();
+    }
+
+    public void deleteRequest(Long id) {
+        requestRepository.deleteById(id);
+    }
+
+    public void updateRequestStatus(Request request, RequestStatus requestStatus) {
+        request.setRequestStatus(requestStatus);
+        requestRepository.save(request);
     }
 }

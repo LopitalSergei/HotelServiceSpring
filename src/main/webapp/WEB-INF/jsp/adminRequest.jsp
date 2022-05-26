@@ -1,3 +1,5 @@
+<%@ page import="com.laptev.entity.Request" %>
+<%@ page import="com.laptev.entity.RequestStatus" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
@@ -31,6 +33,7 @@
                 <td>
                     <form action="${pageContext.request.contextPath}/processingRequest" method="post">
                         <input type="hidden" name="requestId" value="${request.id}"/>
+                        <input type="hidden" name="requestStatus" value="${request.requestStatus}"/>
                         <input type="hidden" name="action" value="processing"/>
                         <button type="submit">Обработать заявку</button>
                     </form>
