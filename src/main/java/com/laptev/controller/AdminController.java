@@ -1,5 +1,7 @@
 package com.laptev.controller;
 
+import com.laptev.entity.Request;
+import com.laptev.entity.RequestStatus;
 import com.laptev.service.RequestService;
 import com.laptev.service.UserService;
 import lombok.AllArgsConstructor;
@@ -9,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -26,7 +31,14 @@ public class AdminController {
 
     @GetMapping("/adminRequest")
     public String requests(Model model){
-        model.addAttribute("allRequests", requestService.allRequests());
+        List<Request> allRequests = requestService.allRequests();
+        List<Request> requests = new ArrayList<>();
+        for (Request allRequest : allRequests) {
+            if (allRequest.getRequestStatus().equals(RequestStatus.IN_PROGRESS)) {
+                requests.add(allRequest);
+            }
+        }
+        model.addAttribute("allRequests", requests);
         return "adminRequest";
     }
 

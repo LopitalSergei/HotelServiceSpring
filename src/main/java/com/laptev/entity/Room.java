@@ -24,10 +24,10 @@ public class Room {
     @Enumerated(EnumType.STRING)
     private RoomStatus status = RoomStatus.EMPTY;
 
-//    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private Set<Order> orders;
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Order> orders;
 
-    @Transient
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+//    @Transient
+//    @ManyToMany(mappedBy = "roles")
+//    private Set<User> users;
 }

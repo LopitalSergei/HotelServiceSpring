@@ -21,6 +21,8 @@
   </sec:authorize>
   <h4><a href="/news">Новости (только пользователь)</a></h4>
   <h4><a href="/request">Создание заявки (только пользователь)</a></h4>
+  <h4><a href="/myRequests">Мои заявки (только пользователь)</a></h4>
+  <h4><a href="/myOrders">Мои заказы (только пользователь)</a></h4>
   <sec:authorize access="hasRole('ADMIN')">
   <h4><a href="/admin">Пользователи (только админ)</a></h4>
   </sec:authorize>
@@ -29,6 +31,9 @@
   </sec:authorize>
   <sec:authorize access="hasRole('ADMIN')">
   <h4><a href="/allRooms">Все комнаты (только админ)</a></h4>
+  </sec:authorize>
+  <sec:authorize access="hasRole('ADMIN')">
+  <h4><a href="/allOrders">Все заказы (только админ)</a></h4>
   </sec:authorize>
 </div>
 </body>

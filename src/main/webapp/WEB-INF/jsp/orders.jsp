@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Просмотр всех комнат</title>
+    <title>Список заказов</title>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
 </head>
 
@@ -13,18 +13,22 @@
 <div>
     <table>
         <thead>
-        <th>Number of room</th>
+        <th>ID</th>
         <th>Number of places</th>
-        <th>Room class</th>
-        <th>Room status</th>
+        <th>Duration hours</th>
+        <th>Order status</th>
+        <th>Number of room</th>
+        <th>User id</th>
 
         </thead>
-        <c:forEach items="${allRooms}" var="room">
+        <c:forEach items="${allOrders}" var="order">
             <tr>
-                <td>${room.roomNumber}</td>
-                <td>${room.numOfPlaces}</td>
-                <td>${room.roomClass}</td>
-                <td>${room.status}</td>
+                <td>${order.id}</td>
+                <td>${order.places}</td>
+                <td>${order.durationHours}</td>
+                <td>${order.orderStatus}</td>
+                <td>${order.room.roomNumber}</td>
+                <td>${order.user.id}</td>
             </tr>
         </c:forEach>
     </table>

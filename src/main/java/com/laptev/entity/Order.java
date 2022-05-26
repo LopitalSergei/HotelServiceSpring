@@ -24,12 +24,12 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus = OrderStatus.WAITING_FOR_CONFIRMATION;
 
-//    @ManyToOne
-//    @JoinColumn(name = "room_number")
-//    private Room room;
+    @ManyToOne
+    @JoinColumn(name = "room_number")
+    private Room room;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Room> rooms;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    private Set<Room> rooms;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

@@ -24,6 +24,8 @@ public class RequestController {
 
     private final RequestService requestService;
 
+    // Обработать error-ы
+
     @GetMapping("/request")
     public String requestForm(Model model) {
         model.addAttribute("requestForm", new Request());

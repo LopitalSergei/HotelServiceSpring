@@ -21,6 +21,14 @@ public class RequestService {
 
     private final UserRepository userRepository;
 
+    public List<Request> findRequestsByUserName(String name){
+        return requestRepository.findRequestsByUserName(name);
+    }
+
+    public List<Request> findRequestsByUserId(Long id){
+        return requestRepository.findRequestsByUserId(id);
+    }
+
     public void saveRequest(Request request) {
         User user = userRepository.findByUsername(getCurrentUsername());
         request.setUser(user);
