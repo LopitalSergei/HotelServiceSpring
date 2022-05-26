@@ -34,7 +34,6 @@
     </table>
     <br>
     <h3>Подходящие комнаты</h3>
-    <br>
     <table>
         <thead>
         <th>ID</th>

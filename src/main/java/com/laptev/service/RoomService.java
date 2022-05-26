@@ -13,6 +13,10 @@ public class RoomService {
 
     private final RoomRepository roomRepository;
 
+    public Long countRoomInDb(){
+        return roomRepository.count();
+    }
+
     public void saveRoom(Room room){
         roomRepository.save(room);
     }

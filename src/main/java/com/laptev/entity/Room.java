@@ -19,7 +19,8 @@ public class Room {
 
     private Integer places;
 
-    private String roomClass;
+    @Enumerated(EnumType.STRING)
+    private RoomClass roomClass;
 
     @Builder.Default
     @Enumerated(EnumType.STRING)
