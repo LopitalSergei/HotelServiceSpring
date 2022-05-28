@@ -1,18 +1,11 @@
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        form {
-            border: 3px solid #f1f1f1;
-        }
+        body {font-family: Arial, Helvetica, sans-serif;}
+        form {border: 3px solid #f1f1f1;}
 
         input[type=text], input[type=password] {
             width: 100%;
@@ -43,6 +36,16 @@
             background-color: #f44336;
         }
 
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+
         .container {
             padding: 16px;
         }
@@ -58,42 +61,42 @@
                 display: block;
                 float: none;
             }
-
             .cancelbtn {
                 width: 100%;
             }
         }
     </style>
-    <title>Вход в аккаунт</title>
 </head>
-
 <body>
 
-<h2>Войдите в свой аккаунт</h2>
+<h2>Login Form</h2>
 
-<sec:authorize access="isAuthenticated()">
-    <% response.sendRedirect("/"); %>
-</sec:authorize>
-<form method="POST" action="/login">
+<form action="/action_page.php">
+    <div class="imgcontainer">
+        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
     <div class="container">
-        <%--@declare id="username"--%><%--@declare id="password"--%>
-        <label for="username"><b>Username</b></label>
-        <label>
-            <input name="username" type="text" placeholder="Username"
-                   autofocus="true"/>
-        </label>
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
 
-        <label for="password"><b>Password</b></label>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <button type="submit">Login</button>
         <label>
-            <input name="password" type="password" placeholder="Password"/>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
         </label>
-        <button type="submit">Вход</button>
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-        <button onclick="location.href='http://localhost:8080/';" type="button" class="cancelbtn">Отмена</button>
-        <span class="psw">Забыли <a href="/">пароль?</a></span>
+        <button type="button" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
 </form>
+
 </body>
 </html>
+
+
+

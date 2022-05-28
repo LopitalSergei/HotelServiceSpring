@@ -5,35 +5,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        button {
+            background-color: #f44336;
+            color: white;
+            padding: 6px 12px;
+            margin: 2px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #4169e1;
+            float: right;
+        }
+    </style>
     <title>Создание заявки</title>
 </head>
 
 <body>
-<div>
+<h2>Создание заявки</h2>
+
+
+<div class="container">
+
     <%--@elvariable id="requestForm" type="com.laptev.entity.Request"--%>
     <form:form method="POST" modelAttribute="requestForm">
-        <h2>Создание заявки</h2>
-        <div>
-            <form:input type="text" path="places" placeholder="Num of places"
-                        autofocus="true"></form:input>
-            <form:errors path="places"></form:errors>
-                ${placesError}
-        </div>
-        <div>
-            <form:input type="text" path="roomClass" placeholder="Room Class"></form:input>
-            <form:errors path="roomClass"></form:errors>
-                ${roomClassError}
-        </div>
-        <div>
-            <form:input type="text" path="durationHours" placeholder="Duration Hours"></form:input>
-            <form:errors path="durationHours"></form:errors>
-                ${durationHoursError}
-        </div>
+        <%--@declare id="numofplaces"--%><label for="numOfPlaces">Number of places</label>
+        <form:input type="text" path="places" placeholder="Num of places"
+                    autofocus="true"></form:input>
+        <form:errors path="places"></form:errors>
+        ${placesError}
 
-        <button type="submit">Создать заявку</button>
+        <label for="roomClass">Room class</label>
+        <select id="roomClass" name="roomClass">
+            <option value="FIRST_CLASS">First class</option>
+            <option value="SECOND_CLASS">Second class</option>
+            <option value="THIRD_CLASS">Third class</option>
+        </select>
+
+        <label for="durationHours">Duration hours</label>
+        <form:input type="text" path="durationHours" placeholder="Duration Hours"></form:input>
+        <form:errors path="durationHours"></form:errors>
+        ${durationHoursError}
+        <input type="submit" value="Submit">
+        <button onclick="location.href='http://localhost:8080/';" type="button" class="cancelbtn">На главную</button>
     </form:form>
-    <a href="/">Главная</a>
+
 </div>
 </body>
 </html>
