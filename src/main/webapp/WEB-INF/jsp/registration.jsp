@@ -5,7 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Регистрация</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:100,200,300,400,500,600,700,800,900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="${contextPath}/resources/css/style.css" type="text/css">
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -72,54 +79,75 @@
     </style>
 
     <meta charset="utf-8">
-    <title>Регистрация</title>
+
 </head>
 <body>
+
+<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="container-fluid">
+        <div class="inner-header">
+            <div class="logo">
+                <a href="/"><img src="${contextPath}/resources/img/logo.png" alt=""></a>
+            </div>
+
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </div>
+</header>
+<!-- Header End -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div class="container">
     <%--@elvariable id="userForm" type="com.laptev.entity.User"--%>
     <form:form method="POST" modelAttribute="userForm">
-    <h1>Регистрация</h1>
+    <h2>Регистрация</h2>
     <p>Пожалуйста, заполните все поля в этой форме, чтобы создать аккаунт.</p>
     <hr>
 
     <div>
-        <label for="Username"><b>Username</b></label>
+        <label for="Username"><b>Имя пользователя</b></label>
         <form:input type="text" path="username" placeholder="Username"
                     autofocus="true"></form:input>
         <form:errors path="username"></form:errors>
             ${usernameError}
     </div>
     <div>
-        <label for="email"><b>Email</b></label>
+        <label for="email"><b>Электронная почта</b></label>
         <form:input type="text" path="email" placeholder="Email"></form:input>
         <form:errors path="email"></form:errors>
             ${emailError}
     </div>
     <div>
-        <label for="name"><b>Name</b></label>
+        <label for="name"><b>Имя</b></label>
         <form:input type="text" path="name" placeholder="Name"></form:input>
         <form:errors path="name"></form:errors>
             ${nameError}
     </div>
     <div>
-        <label for="surname"><b>Surname</b></label>
+        <label for="surname"><b>Фамилия</b></label>
         <form:input type="text" path="surname" placeholder="Surname"></form:input>
         <form:errors path="surname"></form:errors>
             ${surnameError}
     </div>
     <div>
-        <label for="phoneNumber"><b>Phone number</b></label>
+        <label for="phoneNumber"><b>Номер телефона</b></label>
         <form:input type="text" path="phoneNumber" placeholder="Phone number"></form:input>
         <form:errors path="phoneNumber"></form:errors>
             ${phoneNumberError}
     </div>
     <div>
-        <label for="password"><b>Password</b></label>
+        <label for="password"><b>Пароль</b></label>
         <form:input type="password" path="password" placeholder="Password"></form:input>
     </div>
     <div>
-        <label><b>Password confirm</b></label>
+        <label><b>Подтверждение пароля</b></label>
         <form:input type="password" path="passwordConfirm"
                     placeholder="Confirm your password"></form:input>
         <form:errors path="password"></form:errors>

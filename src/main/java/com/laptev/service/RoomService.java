@@ -4,6 +4,7 @@ import com.laptev.entity.Room;
 import com.laptev.entity.RoomStatus;
 import com.laptev.repository.RoomRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class RoomService {
     }
 
     public List<Room> allRooms(){
-       return roomRepository.findAll();
+       return roomRepository.findAll(Sort.by("roomNumber"));
     }
 
     public void updateRoomStatus(Room room, RoomStatus roomStatus){

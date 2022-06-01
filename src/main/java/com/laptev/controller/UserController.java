@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -35,5 +36,16 @@ public class UserController {
         String currentName = authentication.getName();
         model.addAttribute("myOrders", orderService.findOrdersByUserId(userService.findUserByUsername(currentName).getId()));
         return "myOrders";
+    }
+
+    @PostMapping("/newsletter")
+    public String newsletter(@RequestParam String email){
+        userService.newsletter(email);
+        return "redirect:/";
+    }
+
+    @GetMapping("/newsletter")
+    public String newsletterMain(){
+        return "redirect:/";
     }
 }

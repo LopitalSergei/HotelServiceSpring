@@ -4,8 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Пользователи</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" charset=UTF-8">
+  <title>Список пользователей</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:100,200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="${contextPath}/resources/css/style.css" type="text/css">
   <style>
     button {
       background-color: #f44336;
@@ -48,13 +54,47 @@
     .cancelbtn {
       width: auto;
       padding: 10px 18px;
-      background-color: #4169e1;
+      background-color: #F9AD81;
+    }
+
+    .header-section {
+      background: #353535;
+      padding-left: 30px;
+      padding-right: 30px;
+      padding-top: 30px;
+      padding-bottom: 24px;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+      z-index: 999;
     }
   </style>
 </head>
 <body>
 
-<h2>Все пользователи</h2>
+<!-- Header Section Begin -->
+<header class="header-section">
+  <div class="container-fluid">
+    <div class="inner-header">
+      <div class="logo">
+        <a href="/"><img src="${contextPath}/resources/img/logo.png" alt=""></a>
+      </div>
+      <div id="mobile-menu-wrap"></div>
+    </div>
+  </div>
+</header>
+<!-- Header End -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h2>Список пользователей</h2>
+<br>
 
 <table>
   <tr>

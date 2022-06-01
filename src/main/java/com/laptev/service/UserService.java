@@ -38,11 +38,9 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
-
         if (user == null) {
             throw new UsernameNotFoundException("Пользователь не найден!");
         }
-
         return user;
     }
 
@@ -63,29 +61,23 @@ public class UserService implements UserDetailsService {
 
     public boolean saveUser(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
-
         if (userFromDB != null) {
             return false;
         }
-
         user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-
         final ConfirmationToken confirmationToken = new ConfirmationToken(user);
         confirmationTokenService.saveConfirmationToken(confirmationToken);
-
         return true;
     }
 
     public void confirmUser(ConfirmationToken confirmationToken) {
         final User user = confirmationToken.getUser();
-
         user.setEnabled(true);
-
         userRepository.save(user);
-
-        confirmationTokenService.deleteConfirmationToken(confirmationToken.getId());
+        confirmationTokenService.deleteConfirmationToken(
+                confirmationToken.getId());
     }
 
     public void sendConfirmationMail(String userMail, String token) {
@@ -96,6 +88,16 @@ public class UserService implements UserDetailsService {
         mailMessage.setText(
                 "Спасибо за регистрацию. Пожалуйста перейдите по ссылке, для активации аккаунта. " + "http://localhost:8080/confirm?token="
                         + token);
+
+        emailSenderService.sendEmail(mailMessage);
+    }
+
+    public void newsletter(String userMail){
+        final SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(userMail);
+        mailMessage.setFrom("<MAIL>");
+        mailMessage.setSubject("Вы подписались на рассылку новостей");
+        mailMessage.setText("Спасибо что следите за событиями нашего отеля!");
 
         emailSenderService.sendEmail(mailMessage);
     }
